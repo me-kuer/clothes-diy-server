@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 // 配置微信
@@ -15,7 +16,7 @@ const (
 	AppSecret = "5d60d4684d550a0659bbbeff47c40727"
 )
 
-type ResMap struct {
+type ResponseInfo struct {
 	Openid     string `json:"openid"`
 	Unionid    string `json:"unionid"`
 	SessionKey string `json:"session_key"`
@@ -35,8 +36,8 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 	// 将json解析为map
-	var resMap = make(map[string]interface{}, 5)
-	err2 := json.Unmarshal([]byte(res), &resMap) //第二个参数要地址传递
+	var resInfo ResponseInfo
+	err2 := json.Unmarshal([]byte(res), &resInfo) //第二个参数要地址传递
 
 	if err2 != nil {
 		log.Error(err2.Error())
@@ -47,9 +48,9 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 	// 判断微信授权的返回码
-	if resMap["errcode"].(int) != 0 {
+	if resInfo.Errcode != 0 {
 		// 如果返回错误码，则返回给前端
-		errMsg := "错误码：" + strconv.Itoa(resMap["errcode"].(int)) + "，错误信息：" + resMap["errmsg"].(string)
+		errMsg := "错误码：" + strconv.Itoa(resInfo.Errcode) + "，错误信息：" + resInfo.Errmsg
 		log.Error(errMsg)
 		c.JSON(http.StatusOK, gin.H{
 			"code": 500,
@@ -71,7 +72,10 @@ func UserLogin(c *gin.Context) {
 	// 判断是否有该条记录，如果没有则进行创建用户
 	if !has {
 		var user = models.Users{
-			Openid: resMap
+			Openid: resInfo.Openid,
+			Unionid: resInfo.Unionid,
+			SessionKey: resInfo.SessionKey,
+			RegisterTime: strconv.FormatInt(time.Now().Unix(),10),
 		}
 	}
 
