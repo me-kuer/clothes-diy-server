@@ -11,12 +11,13 @@ func InitRouter() {
 	router := gin.Default()
 	// 要在路由组之前全局使用「跨域中间件」, 否则OPTIONS会返回404
 	router.Use(middlewares.Cors())
-
+	// Homer（前端） 分组
 	router.GET("/user/login", home.UserLogin)
-
 	homeGroup := router.Group("/")
 	homeGroup.Use(middlewares.CheckUserToken())
 	{
+		// 保存用户 nickname & head_pic
+		homeGroup.POST("/user/saveinfo", home.SaveUserInfo)
 		// 获取首页
 		homeGroup.GET("/goods/list", home.GoodsList)
 		// 创建订单
@@ -26,7 +27,7 @@ func InitRouter() {
 		homeGroup.POST("/upload/file", home.UploadFile)
 
 	}
-
+	// Admin（后台） 分组
 	router.GET("/admin/user/login", admin.AdminLogin)
 	adminGroup := router.Group("/admin")
 	adminGroup.Use(middlewares.CheckAdminToken())

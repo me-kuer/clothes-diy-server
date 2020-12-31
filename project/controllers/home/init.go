@@ -8,4 +8,5 @@ import (
 var(
 	db = models.Engine
 	log = utils.Log
+	jwt = new(utils.Jwt)
 )

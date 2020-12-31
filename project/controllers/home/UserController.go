@@ -12,8 +12,8 @@ import (
 
 // 配置微信
 const (
-	AppID     = "wx4e68b7770373c61b"
-	AppSecret = "5d60d4684d550a0659bbbeff47c40727"
+	AppID     = "wx65ae05da4969cd7b"
+	AppSecret = "770753c16b9b1a7f208edb55b0df2f6a"
 )
 
 type ResponseInfo struct {
@@ -25,7 +25,8 @@ type ResponseInfo struct {
 }
 
 func UserLogin(c *gin.Context) {
-	code := c.GetString("code")
+	code := c.Query("code")
+
 	res, err := getOpenid(code)
 	if err != nil {
 		log.Error(err.Error())
@@ -60,7 +61,7 @@ func UserLogin(c *gin.Context) {
 	}
 	// 判断数据库中是否有该openid，如果没有则添加，如果已存在则直接返回token
 	var user models.Users
-	has, err3 := db.Cols("id").Where("openid=?", resMap["openid"].(string)).Get(&user)
+	has, err3 := db.Cols("id").Where("openid=?", resInfo.Openid).Get(&user)
 	if err3 != nil {
 		log.Error(err3.Error())
 		c.JSON(http.StatusOK, gin.H{
@@ -71,19 +72,75 @@ func UserLogin(c *gin.Context) {
 	}
 	// 判断是否有该条记录，如果没有则进行创建用户
 	if !has {
-		var user = models.Users{
-			Openid: resInfo.Openid,
-			Unionid: resInfo.Unionid,
-			SessionKey: resInfo.SessionKey,
-			RegisterTime: strconv.FormatInt(time.Now().Unix(),10),
+		user = models.Users{
+			Openid:       resInfo.Openid,
+			Unionid:      resInfo.Unionid,
+			SessionKey:   resInfo.SessionKey,
+			RegisterTime: strconv.FormatInt(time.Now().Unix(), 10),
+		}
+		_, err4 := db.InsertOne(&user)
+		if err4 != nil {
+			log.Error(err4.Error())
+			c.JSON(http.StatusOK, gin.H{
+				"code": 500,
+				"msg":  err4.Error(),
+			})
+			return
 		}
 	}
 
+	// 生成token
+	token, err5 := jwt.SetUserId(user.Id).SetExpireTime(2 * 60 * 60).EncodeToken()
+	if err5 != nil {
+		log.Error(err5.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  err5.Error(),
+		})
+		return
+	}
+	// 下发token
+	c.Header("Authorization", token)
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "登录成功",
+	})
 }
 
 // 保存用户信息
 func SaveUserInfo(c *gin.Context) {
+	nickname := c.Query("nickname")
+	headPic := c.Query("head_pic")
 
+	// 获取user_id
+	userId, has := c.Get("user_id")
+	if !has {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  "user_id不存在",
+		})
+		return
+	}
+
+	// 修改
+	var user = models.Users{
+		Nickname: nickname,
+		HeadPic:  headPic,
+	}
+	_,err := db.Where("id=?", userId).Update(&user)
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  err.Error(),
+		})
+		return
+	}
+	// 返回成功
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "用户信息修改成功",
+	})
 }
 
 // 通过code 获取 openid, access_token

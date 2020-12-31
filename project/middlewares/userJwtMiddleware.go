@@ -1,7 +1,6 @@
 package middlewares
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
@@ -11,9 +10,8 @@ import (
 func CheckUserToken() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
-		fmt.Println("我走到这里了")
 		var token = c.GetHeader("Authorization")
-		fmt.Println("token为"+token)
+
 		// 如果没有token 则表示
 		if token == "" {
 			// 返回未登录
@@ -37,7 +35,7 @@ func CheckUserToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		// 判断 admin_id 是否存在
+		// 判断 user_id 是否存在
 		if claims == nil || claims.UserId <= 0 {
 			// 返回未登录
 			c.JSON(http.StatusOK, gin.H{
@@ -58,9 +56,12 @@ func CheckUserToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+		// 将解析的userId 保存到 gin.Context中
+		c.Set("user_id", claims.UserId)
+
 		// 如果token距离过期还有30分钟，则重新颁发token
 		// 公式： 过期时间 - 当前时间 <= 30分钟
-		if claims.ExpiresAt-time.Now().Unix() <= 30*60 {
+		if claims.ExpiresAt - time.Now().Unix() <= 30 * 60 {
 			newToken, err2 := jwt.SetUserId(claims.UserId).SetExpireTime(2 * 60 * 60).EncodeToken()
 			if err2 != nil {
 				log.Error(err2.Error())
