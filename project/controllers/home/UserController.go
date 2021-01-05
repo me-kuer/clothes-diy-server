@@ -111,7 +111,6 @@ func UserLogin(c *gin.Context) {
 func SaveUserInfo(c *gin.Context) {
 	nickname := c.Query("nickname")
 	headPic := c.Query("head_pic")
-
 	// 获取user_id
 	userId, has := c.Get("user_id")
 	if !has {
@@ -127,7 +126,7 @@ func SaveUserInfo(c *gin.Context) {
 		Nickname: nickname,
 		HeadPic:  headPic,
 	}
-	_,err := db.Where("id=?", userId).Update(&user)
+	_,err := db.Id(userId).Update(&user)
 	if err != nil {
 		log.Error(err.Error())
 		c.JSON(http.StatusOK, gin.H{

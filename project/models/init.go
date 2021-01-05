@@ -10,6 +10,7 @@ import (
 
 type Address struct {
 	Id       int    `xorm:"autoincr pk" json:"id,omitempty"`
+	UserId   int    `xorm:"notnull default(0)" json:"user_id,omitempty"`
 	Name     string `xorm:"varchar(60) notnull default('')" json:"name,omitempty"`
 	Tel      string `xorm:"varchar(11) not null default('')" json:"tel,omitempty"`
 	Province string `xorm:"varchar(90) default('')" json:"province,omitempty"`
@@ -47,8 +48,13 @@ type Orders struct {
 	Id                int     `xorm:"autoincr pk" json:"id,omitempty"`
 	UserId            int     `xorm:"notnull default(0)" json:"user_id,omitempty"`
 	GoodsId           int     `xorm:"notnull default(0)" json:"goods_id,omitempty"`
+	GoodsName         string  `xorm:"notnull default('')" json:"goods_name,omitempty"`
 	Front             string  `xorm:"varchar(100) default('')" json:"front,omitempty"`
 	Contrary          string  `xorm:"varchar(100) default('')" json:"contrary,omitempty"`
+	FrontPicture      string  `xorm:"varchar(100) default('')" json:"front_picture,omitempty"`
+	ContraryPicture   string  `xorm:"varchar(100) default('')" json:"contrary_picture,omitempty"`
+	FrontCompose      string  `xorm:"varchar(100) default('')" json:"front_compose,omitempty"`
+	ContraryCompose   string  `xorm:"varchar(100) default('')" json:"contrary_compose,omitempty"`
 	Color             string  `xorm:"varchar(30) default('')" json:"color,omitempty"`
 	Size              string  `xorm:"varchar(1) default('')" json:"size,omitempty"`
 	OutTradeNo        string  `xorm:"varchar(64) default('')" json:"out_trade_no,omitempty"`
@@ -57,11 +63,13 @@ type Orders struct {
 	Description       string  `xorm:"text" json:"id,omitempty"`
 	ConsigneeName     string  `xorm:"varchar(60) default('')" json:"consignee_name,omitempty"`
 	ConsigneeTel      string  `xorm:"varchar(11) default('')" json:"consignee_tel,omitempty"`
+	ConsigneeSex      string  `xorm:"tinyint(1) default(1)" json:"consignee_sex,omitempty"`
 	ConsigneeProvince string  `xorm:"varchar(90) default('')" json:"consignee_province,omitempty"`
 	ConsigneeCity     string  `xorm:"varchar(90) default('')" json:"consignee_city,omitempty"`
 	ConsigneeRegion   string  `xorm:"varchar(90) default('')" json:"consignee_region,omitempty"`
 	ConsigneeDetail   string  `xorm:"text" json:"consignee_detail,omitempty"`
 	Note              string  `xorm:"text" json:"note,omitempty"`
+	CreateTime        string  `xorm:"varchar(11) default('0')" json:"create_time,omitempty"`
 	PayTime           string  `xorm:"varchar(11) default('0')" json:"pay_time,omitempty"`
 	DispatchinTime    string  `xorm:"varchar(11) default('0')" json:"dispatchin_time,omitempty"`
 	CompleteTime      string  `xorm:"varchar(11) default('0')" json:"complete_time,omitempty"`
