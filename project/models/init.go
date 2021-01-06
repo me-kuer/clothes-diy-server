@@ -32,6 +32,7 @@ type Goods struct {
 	Id         int     `xorm:"autoincr pk" json:"id,omitempty"`
 	Name       string  `xorm:"varchar(30) default('')" json:"name,omitempty"`
 	Price      float64 `xorm:"float(6,2) default(0)" json:"price,omitempty"`
+	PictureList string `xorm:"varchar(300) default('')" json:"picture_list,omitempty" `
 	Status     int     `xorm:"tinyint(1) default(1)" json:"status,omitempty"`
 	CreateTime string  `xorm:"varchar(11) default('0')" json:"create_time,omitempty"`
 }

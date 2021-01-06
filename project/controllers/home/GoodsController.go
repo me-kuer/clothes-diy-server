@@ -2,6 +2,7 @@ package home
 
 import (
 	"diy-server/models"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -56,5 +57,74 @@ func GetGoodsDetail(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"data": imgs,
+	})
+}
+
+// 获取单个颜色详情
+func GetColor(c *gin.Context) {
+	id := c.Query("id")
+	var colorInfo models.GoodsImg
+	has, err := db.Cols("front", "contrary").ID(id).Get(&colorInfo)
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  err.Error(),
+		})
+		return
+	}
+
+	if !has {
+		msg := "该颜色信息不存在"
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  msg,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"data": colorInfo,
+	})
+}
+
+// 获取图案列表
+func GetPicture(c *gin.Context) {
+	id := c.Query("id")
+
+	var goods models.Goods
+	has, err := db.Cols("picture_list").ID(id).Get(&goods)
+	if err != nil {
+		log.Error(err.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  err.Error(),
+		})
+		return
+	}
+
+	if !has {
+		msg := "该商品不存在"
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  msg,
+		})
+		return
+	}
+	var pictureList = make([]*models.Picture, 0)
+	err2 := db.Where(fmt.Sprintf("id in (%s)", goods.PictureList)).Find(&pictureList)
+	if err2 != nil {
+		log.Error(err2.Error())
+		c.JSON(http.StatusOK, gin.H{
+			"code": 500,
+			"msg":  err2.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"data": pictureList,
 	})
 }

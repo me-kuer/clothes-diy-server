@@ -23,6 +23,10 @@ func InitRouter() {
 	router.GET("/goods/list", home.GetGoodsList)
 	// 获取当前选中的商品属性
 	router.GET("/goods/detail", home.GetGoodsDetail)
+	// 获取颜色对应的图片
+	router.GET("/goods/color", home.GetColor)
+	// 获取图案列表
+	router.GET("/goods/picture", home.GetPicture)
 
 	homeGroup := router.Group("/")
 	homeGroup.Use(middlewares.CheckUserToken())
