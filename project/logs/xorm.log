@@ -1,226 +1,98 @@
-[xorm] [info]  2021/01/07 09:12:06.732731 PING DATABASE mysql
-[xorm] [info]  2021/01/07 09:12:06.758733 [SQL] SELECT `TABLE_NAME`, `ENGINE`, `TABLE_ROWS`, `AUTO_INCREMENT`, `TABLE_COMMENT` from `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA`=? AND (`ENGINE`='MyISAM' OR `ENGINE` = 'InnoDB' OR `ENGINE` = 'TokuDB') [diy]
-[xorm] [info]  2021/01/07 09:12:07.128754 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy users]
-[xorm] [info]  2021/01/07 09:12:07.136754 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy users]
-[xorm] [info]  2021/01/07 09:12:07.137754 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy admin]
-[xorm] [info]  2021/01/07 09:12:07.150755 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy admin]
-[xorm] [info]  2021/01/07 09:12:07.153755 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy orders]
-[xorm] [info]  2021/01/07 09:12:07.189757 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy orders]
-[xorm] [warn]  2021/01/07 09:12:07.227760 Table orders Column total db default is 0.00, struct default is 0
-[xorm] [info]  2021/01/07 09:12:07.227760 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods]
-[xorm] [info]  2021/01/07 09:12:07.234760 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods]
-[xorm] [warn]  2021/01/07 09:12:07.234760 Table goods Column price db default is 0.00, struct default is 0
-[xorm] [info]  2021/01/07 09:12:07.235760 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods_img]
-[xorm] [info]  2021/01/07 09:12:07.241760 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods_img]
-[xorm] [info]  2021/01/07 09:12:07.243760 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy picture]
-[xorm] [info]  2021/01/07 09:12:07.249761 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy picture]
-[xorm] [info]  2021/01/07 09:12:07.250761 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy address]
-[xorm] [info]  2021/01/07 09:12:07.256761 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy address]
-[xorm] [info]  2021/01/07 09:12:07.257761 [SQL] SELECT `id`, `username`, `password`, `last_login`, `current_login` FROM `admin` WHERE `id`=? LIMIT 1 []interface {}{1}
-[xorm] [info]  2021/01/07 09:12:11.026175 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 09:12:11.062177 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:12:18.437344 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:12:18.447345 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:12:18.448345 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:15:06.908219 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"2"}
-[xorm] [info]  2021/01/07 09:15:06.911219 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:15:06.911219 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:15:12.066966 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:15:12.069966 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:15:12.070966 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:17:19.067235 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:17:19.145239 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:17:19.145239 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:18:21.435948 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:18:21.451548 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:18:21.451548 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:24:34.052907 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:24:34.054907 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:24:34.054907 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:24:38.677508 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:24:38.679508 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:24:38.680508 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:27:24.166962 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:27:24.168963 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:27:24.169963 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:28:37.351684 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:28:37.354684 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:28:37.354684 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:29:14.963470 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:29:14.966471 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:29:14.966471 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:32:25.298553 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:32:25.299553 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:32:25.300553 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:34:19.065868 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:34:19.078869 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:34:19.078869 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:36:06.387907 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:36:06.391907 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:36:06.392907 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:36:22.611838 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:36:22.614839 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:36:22.614839 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 09:57:25.973377 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:57:25.976377 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 09:57:25.977377 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:37:48.361930 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:37:48.365930 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:37:48.366930 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:38:02.800756 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:38:02.802756 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:38:02.803756 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:39:07.378449 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:39:07.380449 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:39:07.380449 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:39:50.716928 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:39:50.732929 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:39:50.733929 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:40:13.826250 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:13.828250 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:13.828250 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:40:16.753417 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 10:40:16.781419 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:18.872539 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:18.878539 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:18.878539 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:40:37.421600 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:37.422600 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:40:37.423600 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:41:40.153188 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:40.156188 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:40.156188 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:41:44.963463 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:44.965463 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:44.966463 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:41:56.633130 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:56.635130 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:56.635130 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:41:59.372287 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:59.375287 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:41:59.375287 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:42:15.831228 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:42:15.833228 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:42:15.834228 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:42:18.652390 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:42:18.656390 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:42:18.656390 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:43:36.314832 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:43:36.318832 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:43:36.318832 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:43:48.640537 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:43:48.643537 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:43:48.643537 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 10:44:15.046047 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:44:15.049047 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 10:44:15.049047 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:00:22.066357 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:00:22.068357 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:00:22.069358 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:00:30.845860 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:00:30.847860 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:00:30.848860 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:07:10.238703 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:07:10.249704 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:07:10.249704 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:08:17.822569 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:08:17.826569 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:08:17.827569 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:09:02.655133 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:02.658133 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:02.659134 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:09:05.208279 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:05.212280 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:05.212280 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:09:37.498126 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:37.500126 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:09:37.500126 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:33:26.140840 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:33:26.142840 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:33:26.143840 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:33:39.533606 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:33:39.533606 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:33:39.535606 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:34:04.219018 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:34:04.222018 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:34:04.222018 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:35:11.197849 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:35:11.199849 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:35:11.200849 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:36:01.178708 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:36:01.180708 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:36:01.180708 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:38:06.425871 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:38:06.427871 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:38:06.428871 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 11:38:10.999133 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:38:11.001133 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 11:38:11.015134 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 13:25:38.737922 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:25:38.740923 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:25:38.741923 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 13:25:42.677148 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:25:42.679148 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:25:42.679148 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 13:26:34.329102 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:26:34.332102 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:26:34.332102 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 13:38:14.105127 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:38:14.107127 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:38:14.108127 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 13:59:47.295093 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:59:47.296093 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 13:59:47.296093 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 14:05:59.090359 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 14:05:59.392376 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:41:52.271422 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:41:52.271422 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:41:52.272422 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 15:41:57.820739 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 15:41:58.012750 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:41:59.987863 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:42:00.004864 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:42:00.004864 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 15:42:24.858286 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 15:42:24.890288 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:42:36.930976 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:42:36.939977 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 15:42:36.940977 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:00:31.544256 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:00:31.547256 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:00:31.547256 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:00:34.480424 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:00:34.524426 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:06.033228 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:06.036229 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:06.036229 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:01:08.165350 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:01:08.196352 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:11.729554 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:11.738555 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:01:11.739555 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:04:38.351372 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:04:38.377374 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:04:40.907518 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:04:40.943521 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:04:42.045584 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:04:42.064585 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:04:42.065585 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:13:11.307712 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:13:11.560726 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:26.745595 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:13:26.972608 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:40.035355 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
-[xorm] [info]  2021/01/07 17:13:40.072357 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:43.878575 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:43.881575 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:43.883575 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:13:44.384604 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:44.387604 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:44.387604 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:13:44.830629 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:44.833629 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:44.834629 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
-[xorm] [info]  2021/01/07 17:13:45.181649 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:45.181649 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
-[xorm] [info]  2021/01/07 17:13:45.182649 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:22:48.447188 PING DATABASE mysql
+[xorm] [info]  2021/01/08 09:22:48.473189 [SQL] SELECT `TABLE_NAME`, `ENGINE`, `TABLE_ROWS`, `AUTO_INCREMENT`, `TABLE_COMMENT` from `INFORMATION_SCHEMA`.`TABLES` WHERE `TABLE_SCHEMA`=? AND (`ENGINE`='MyISAM' OR `ENGINE` = 'InnoDB' OR `ENGINE` = 'TokuDB') [diy]
+[xorm] [info]  2021/01/08 09:22:48.616198 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy users]
+[xorm] [info]  2021/01/08 09:22:48.630198 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy users]
+[xorm] [info]  2021/01/08 09:22:48.631199 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy admin]
+[xorm] [info]  2021/01/08 09:22:48.642199 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy admin]
+[xorm] [info]  2021/01/08 09:22:48.643199 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy orders]
+[xorm] [info]  2021/01/08 09:22:48.653200 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy orders]
+[xorm] [warn]  2021/01/08 09:22:48.654200 Table orders Column total db default is 0.00, struct default is 0
+[xorm] [info]  2021/01/08 09:22:48.654200 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods]
+[xorm] [info]  2021/01/08 09:22:48.664200 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods]
+[xorm] [warn]  2021/01/08 09:22:48.665200 Table goods Column price db default is 0.00, struct default is 0
+[xorm] [info]  2021/01/08 09:22:48.665200 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods_img]
+[xorm] [info]  2021/01/08 09:22:48.674201 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy goods_img]
+[xorm] [info]  2021/01/08 09:22:48.675201 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy picture]
+[xorm] [info]  2021/01/08 09:22:48.685202 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy picture]
+[xorm] [info]  2021/01/08 09:22:48.686202 [SQL] SELECT `COLUMN_NAME`, `IS_NULLABLE`, `COLUMN_DEFAULT`, `COLUMN_TYPE`, `COLUMN_KEY`, `EXTRA`,`COLUMN_COMMENT` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy address]
+[xorm] [info]  2021/01/08 09:22:48.695202 [SQL] SELECT `INDEX_NAME`, `NON_UNIQUE`, `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`STATISTICS` WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` = ? [diy address]
+[xorm] [info]  2021/01/08 09:22:48.696202 [SQL] SELECT `id`, `username`, `password`, `last_login`, `current_login` FROM `admin` WHERE `id`=? LIMIT 1 []interface {}{1}
+[xorm] [info]  2021/01/08 09:22:49.211232 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 09:22:49.238233 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:22:51.417358 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:22:51.419358 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:22:51.420358 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:23:22.156116 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:23:22.172117 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:23:22.173117 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:23:40.721178 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:23:40.723178 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:23:40.724178 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:27:54.768709 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:27:54.770709 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:27:54.771709 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:28:01.895116 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 09:28:01.920118 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:28:10.327599 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:28:10.329599 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:28:10.330599 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 09:28:24.410404 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:28:24.416404 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 09:28:24.417404 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:01:22.900567 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:01:22.902567 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:01:22.903567 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:14:18.990957 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:14:19.023959 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:14:20.749058 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:14:20.764058 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:14:20.766059 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:15:02.213429 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:15:02.245431 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:04.066535 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:04.080536 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:04.080536 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:15:27.606882 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:15:27.634883 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:29.457987 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:29.466988 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:15:29.467988 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:15:54.863441 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:15:54.899443 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:11.718405 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:11.719405 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:11.720405 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:16:13.995535 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:16:14.028537 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:22.354013 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:16:22.383015 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:25.733206 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:25.756208 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:25.756208 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:16:27.844327 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:16:27.873329 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:36.341813 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:36.349813 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:36.349813 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:16:38.281924 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:16:38.468935 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:42.086142 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:42.089142 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:16:42.090142 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:19:13.252788 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:19:13.281789 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:19:18.706100 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:19:18.709100 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:19:18.709100 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:23:20.098907 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:23:20.278917 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:23:51.587708 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:23:51.662712 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:24:39.241433 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:24:39.249434 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:24:39.250434 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
+[xorm] [info]  2021/01/08 10:29:28.194960 [SQL] SELECT g.id, g.name, g.price, i.id as color_id, i.front FROM `goods` AS `g` left JOIN goods_img as i ON g.id=i.goods_id GROUP BY g.id ORDER BY g.id desc
+[xorm] [info]  2021/01/08 10:29:28.282966 [SQL] SELECT `id`, `goods_id`, `front`, `contrary`, `color` FROM `goods_img` WHERE (goods_id=?) []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:29:31.325140 [SQL] SELECT `front`, `contrary` FROM `goods_img` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:29:31.328140 [SQL] SELECT `picture_list` FROM `goods` WHERE `id`=? LIMIT 1 []interface {}{"1"}
+[xorm] [info]  2021/01/08 10:29:31.329140 [SQL] SELECT `id`, `src`, `name`, `create_time` FROM `picture` WHERE (id in (1,2,3,4,5,6,7))
